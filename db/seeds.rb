@@ -11,13 +11,20 @@ Patient.destroy_all
 Appointment.destroy_all
 
 require 'faker'
-5.times do |f|
-  doctors = Doctor.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, speciality: ["chirurgien", "dentiste", "podologue", "urologue", "psychologue", "gourou"].sample, zip_code: "69005")
-  patients = Patient.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name)
-end
 
-a1 = Appointment.create(doctor: Doctor.find(1), patient: Patient.find(1), date: Faker::Time.forward(days: 10, period: :all)) 
-a2 = Appointment.create(doctor: Doctor.find(1), patient: Patient.find(2), date: Faker::Time.forward(days: 10, period: :all)) 
-a3 = Appointment.create(doctor: Doctor.find(2), patient: Patient.find(2), date: Faker::Time.forward(days: 10, period: :all)) 
-a4 = Appointment.create(doctor: Doctor.find(4), patient: Patient.find(3), date: Faker::Time.forward(days: 10, period: :all)) 
-a5 = Appointment.create(doctor: Doctor.find(2), patient: Patient.find(1), date: Faker::Time.forward(days: 10, period: :all)) 
+c1 = City.create(city: "Paris")
+c2 = City.create(city: "Lyon")
+c3 = City.create(city: "Marseille")
+
+d1 = Doctor.create(first_name: Faker::Name.first_name,last_name: Faker::Name.last_name, city_id: 2, zip_code: "75000")
+d2 = Doctor.create(first_name: Faker::Name.first_name,last_name: Faker::Name.last_name, city_id: 1, zip_code: "69005")
+d3 = Doctor.create(first_name: Faker::Name.first_name,last_name: Faker::Name.last_name, city_id: 1, zip_code: "69005")
+
+p1 = Patient.create(first_name: Faker::Name.first_name,last_name: Faker::Name.last_name, city_id: 2)
+p2 = Patient.create(first_name: Faker::Name.first_name,last_name: Faker::Name.last_name, city_id: 2)
+p3 = Patient.create(first_name: Faker::Name.first_name,last_name: Faker::Name.last_name, city_id: 1)
+
+a1 = Appointment.create(date: Faker::Time.forward(days: 10, period: :all), doctor: d1, patient: p1, city_id: 2)
+a2 = Appointment.create(date: Faker::Time.forward(days: 10, period: :all), doctor: d2, patient: p3, city_id: 1)
+a3 = Appointment.create(date: Faker::Time.forward(days: 10, period: :all), doctor: d3, patient: p3, city_id: 1)
+a4 = Appointment.create(date: Faker::Time.forward(days: 10, period: :all), doctor: d1, patient: p2, city_id: 2)
