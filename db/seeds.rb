@@ -28,3 +28,15 @@ a1 = Appointment.create(date: Faker::Time.forward(days: 10, period: :all), docto
 a2 = Appointment.create(date: Faker::Time.forward(days: 10, period: :all), doctor: d2, patient: p3, city_id: 1)
 a3 = Appointment.create(date: Faker::Time.forward(days: 10, period: :all), doctor: d3, patient: p3, city_id: 1)
 a4 = Appointment.create(date: Faker::Time.forward(days: 10, period: :all), doctor: d1, patient: p2, city_id: 2)
+
+Specialty.create(specialty: "Podologue")
+Specialty.create(specialty: "Medecin")
+Specialty.create(specialty: "Urologue")
+Specialty.create(specialty: "Généraliste")
+Specialty.create(specialty: "Gourou")
+
+JoinTableSpeciality.create(specialty_id: 1, doctor_id: 1)
+JoinTableSpeciality.create(specialty_id: 2, doctor_id: 1)
+JoinTableSpeciality.create(specialty_id: 3, doctor_id: 1)
+JoinTableSpeciality.create(specialty_id: 3, doctor_id: 2)
+JoinTableSpeciality.create(specialty_id: 5, doctor_id: 3)

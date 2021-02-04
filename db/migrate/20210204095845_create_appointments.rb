@@ -1,6 +1,7 @@
 class CreateAppointments < ActiveRecord::Migration[6.1]
   def change
     create_table :appointments do |t|
+      #create attributes of appointments
       t.datetime :date
       t.belongs_to :doctor, index: true
       t.belongs_to :patient, index: true
